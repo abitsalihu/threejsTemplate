@@ -1,0 +1,29 @@
+{
+  "name": "threejstemplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vite.config.js",
+  "type":"module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abitsalihu/threejsTemplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abitsalihu/threejsTemplate/issues"
+  },
+  "homepage": "https://github.com/abitsalihu/threejsTemplate#readme",
+  "devDependencies": {
+    "gsap": "^3.12.5",
+    "lil-gui": "^0.19.2",
+    "stats.js": "^0.17.0",
+    "three": "^0.164.1",
+    "vite": "^5.2.11",
+    "vite-plugin-glsl": "^1.3.0"
+  }
+}
