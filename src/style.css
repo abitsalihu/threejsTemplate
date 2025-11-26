@@ -9,15 +9,19 @@
 body,
 html {
   font-size: 62.5%;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
   overflow: hidden;
   box-sizing: border-box;
 }
 
 body {
   width: 100vw;
-  font-family: "Courier New", Courier, monospace;
+  height: 100vh;
+  /* font-family: "Courier New", Courier, monospace; */
   display: flex;
+  justify-content: center;
+
+  font-family: "Poppins", sans-serif;
 }
 
 .web-gl {
@@ -110,6 +114,51 @@ body {
 
 .nav-con > img {
   width: 100px;
+}
+
+/*! // buttons */
+
+.buttons-con {
+  z-index: 10;
+  position: absolute;
+  bottom: -100px;
+
+  display: flex;
+  align-items: center;
+  /* border: 2px solid red; */
+  gap: 10px;
+  padding: 15px;
+
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button {
+  font-size: 1.5rem;
+  padding: 6.12px 12.5px;
+  border-radius: 2px;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: 0.15s ease-out;
+  border: 1px solid #d7d5d5;
+  letter-spacing: -0.5px;
+  border-radius: 5px;
+  /* font-weight: 500; */
+}
+
+.active {
+  background: #000000;
+  color: #fdfdfd;
+  border: 1px solid #fdfdfd;
+}
+
+.button:hover {
+  transform: translateY(-4px);
 }
 
 @media screen and (min-width: 768px) {

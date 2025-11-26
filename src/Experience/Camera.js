@@ -12,24 +12,33 @@ export default class Camera {
     this.scene = this.experience.scene;
     this.size = this.experience.size;
     this.fov = {
-      x: this.size.width > 678 ? 75 : 75,
+      x: this.size.width > 678 ? 45 : 75,
     };
 
     this.setInstance();
+    // this.setOrthographic();
     this.setControls();
 
     if (this.debug.active) {
-      this.debugActive();
+      // this.debugActive();
     }
 
+    this.updateCameraFrustum(this.instance, this.size.aspect);
+
     //? activate this when you want to find the position of the camera when you want to animate it
-    // document.addEventListener("click", () => {
-    //   console.log(
-    //     this.instance.position.x,
-    //     this.instance.position.y,
-    //     this.instance.position.z
-    //   );
-    // });
+    document.addEventListener("click", () => {
+      console.log(
+        this.instance.position.x,
+        this.instance.position.y,
+        this.instance.position.z
+      );
+
+      console.log(
+        this.instance.rotation.x,
+        this.instance.rotation.y,
+        this.instance.rotation.z
+      );
+    });
   }
 
   setInstance() {
@@ -41,18 +50,45 @@ export default class Camera {
       0.01,
       100
     );
-    this.instanceGroup.add(this.instance);
 
-    this.instance.position.set(0, 0, 3);
+    this.cameraFar = 11;
+
+    this.instance = new THREE.OrthographicCamera(
+      -this.cameraFar * this.size.aspect,
+      this.cameraFar * this.size.aspect,
+      this.cameraFar,
+      -this.cameraFar,
+      0.1,
+      100
+    );
+    // -7.248939090851262 13.99950309849782 -11.083858577302912
+    // -1.5, -4.03, -0.00
+    // this.instanceGroup.add(this.instance);
+
+    // this.instance.position.set(0, 5, 7);
+    this.instance.position.set(
+      0.683501342356341,
+      18.21033960772617,
+      -7.856221193323502
+    );
+
+    this.instance.rotation.set(-1.5, -0.0, -0.0);
+
+    // this.instance.position.set(1.45, 7.99, -7.99);
+    // 0.40848348008969954 2this.cameraFar05625301091577 -6.773230756341332
+    // 0.010910651467553371 0.9522850968479317 2.6695133200605206
   }
 
   setControls() {
     this.controls = new OrbitControls(this.instance, this.canvas);
     this.controls.enableDamping = true;
+
+    // this.controls.target.set(0, 0, -8);
+
     //? controls limitations
 
     // this.controls.minDistance = 1;
-    // this.controls.maxDistance = 15;
+    // this.controls.maxDistance = 3;
 
     // this.controls.minPolarAngle = -Math.PI * 0.1; // radians
     // this.controls.maxPolarAngle = Math.PI / 2; // radians
@@ -64,13 +100,34 @@ export default class Camera {
     // this.controls.target.set(-0.893815, 1.26713, -1.19338);
   }
 
-  resize() {
-    this.instance.aspect = this.size.width / this.size.height;
-    this.instance.updateProjectionMatrix();
+  updateCameraFrustum(camera, aspect) {
+    // base zoom for desktop
+    let zoom = 11;
+
+    if (window.innerWidth < 1200) zoom = 13;
+    if (window.innerWidth < 992) zoom = 14;
+    if (window.innerWidth < 768) zoom = 15;
+    if (window.innerWidth < 576) zoom = 28;
+
+    camera.left = -zoom * aspect;
+    camera.right = zoom * aspect;
+    camera.top = zoom;
+    camera.bottom = -zoom;
+    camera.updateProjectionMatrix();
   }
 
-  update() {
-    this.controls.update();
+  resize() {
+    this.aspect = this.size.width / this.size.height;
+
+    // this.instance.left = -7 * this.aspect;
+    // this.instance.right = 7 * this.aspect;
+    // this.instance.top = 7;
+    // this.instance.bottom = -7;
+    // this.orthographicCamera.aspect = this.size.width / this.size.height;
+    // this.instance.updateProjectionMatrix();
+
+    this.updateCameraFrustum(this.instance, this.size.aspect);
+    // this.orthographicCamera.updateProjectionMatrix();
   }
 
   debugActive() {
@@ -105,5 +162,10 @@ export default class Camera {
         this.instance.aspect = this.size.width / this.size.height;
         this.instance.updateProjectionMatrix();
       });
+  }
+
+  update() {
+    // console.log(this.controls);
+    this.controls.update();
   }
 }

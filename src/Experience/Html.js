@@ -62,15 +62,17 @@ export default class HTML {
 
     this.resources.on("resourcesReady", () => {
       gsap.to(".bg", {
-        duration: 2,
+        duration: 1,
         opacity: 0,
         y: 0,
         ease: "ease-out",
         display: "none",
         onComplete: () => {
-          gsap.to(this.navImage, {
-            duration: 0.5,
-            opacity: 1,
+          gsap.to(document.querySelector(".buttons-con"), {
+            bottom: 30,
+            duration: 0.75,
+            delay: 1.5,
+            ease: "back.out(.5)",
           });
         },
       });
