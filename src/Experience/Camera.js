@@ -33,11 +33,11 @@ export default class Camera {
         this.instance.position.z
       );
 
-      console.log(
-        this.instance.rotation.x,
-        this.instance.rotation.y,
-        this.instance.rotation.z
-      );
+      // console.log(
+      //   this.instance.rotation.x,
+      //   this.instance.rotation.y,
+      //   this.instance.rotation.z
+      // );
     });
   }
 
@@ -48,7 +48,7 @@ export default class Camera {
       this.fov.x,
       this.size.width / this.size.height,
       0.01,
-      100
+      1000
     );
 
     this.cameraFar = 11;
@@ -66,13 +66,9 @@ export default class Camera {
     // this.instanceGroup.add(this.instance);
 
     // this.instance.position.set(0, 5, 7);
-    this.instance.position.set(
-      0.683501342356341,
-      18.21033960772617,
-      -7.856221193323502
-    );
+    this.instance.position.set(-8.6043, 10.6945, 3.2411);
 
-    this.instance.rotation.set(-1.5, -0.0, -0.0);
+    this.instance.rotation.set(-0.74, -0.5511, -0.44);
 
     // this.instance.position.set(1.45, 7.99, -7.99);
     // 0.40848348008969954 2this.cameraFar05625301091577 -6.773230756341332
@@ -90,8 +86,8 @@ export default class Camera {
     // this.controls.minDistance = 1;
     // this.controls.maxDistance = 3;
 
-    // this.controls.minPolarAngle = -Math.PI * 0.1; // radians
-    // this.controls.maxPolarAngle = Math.PI / 2; // radians
+    this.controls.minPolarAngle = -Math.PI * 0.1; // radians
+    this.controls.maxPolarAngle = Math.PI / 2; // radians
 
     // this.controls.minAzimuthAngle = -0.1;
     // this.controls.maxAzimuthAngle = Math.PI * 0.55;

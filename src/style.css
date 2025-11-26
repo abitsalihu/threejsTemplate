@@ -161,6 +161,26 @@ body {
   transform: translateY(-4px);
 }
 
+.changeFloor {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6.12px;
+  border-radius: 5px;
+  background: #f5f5f5;
+  cursor: pointer;
+  border: 1px solid #d7d5d5;
+  transition: 0.15s ease-out;
+}
+
+.changeFloor > svg {
+  pointer-events: none;
+}
+
+.changeFloor:hover {
+  transform: translateY(-4px);
+}
+
 @media screen and (min-width: 768px) {
   .nav-con {
     position: absolute;

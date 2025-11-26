@@ -17,15 +17,19 @@ export default class World {
     this.camera = this.experience.camera.instance;
     this.controls = this.experience.camera.controls;
 
+    this.cameraTargetOne;
+
     //? html
     this.buttonsCon = document.querySelector(".buttons-con");
+
+    this.changeFloor = document.querySelector(".changeFloor");
 
     //? bloom
 
     this.bloomModels = [];
 
     //? elements
-    this.allTables = [];
+    this.allOverlays = [];
 
     //? environemnt
     this.params = {
@@ -76,95 +80,254 @@ export default class World {
 
     this.buttonsCon.addEventListener("click", (e) => {
       if (e.target.classList.contains("button")) {
-        this.allTables.forEach((e) => {
-          e.visible = false;
-        });
-
         for (const child of this.buttonsCon.children) {
           child.classList.remove("active");
         }
       }
       if (e.target.classList.contains("table_1")) {
-        this.allTables.forEach((e) => {
-          if (e.name === "table_1") {
-            e.visible = true;
+        this.hideOverlays();
+        this.allOverlays.forEach((e) => {
+          if (e.name === "click_apartment-1") {
+            gsap.to(e.material, {
+              opacity: 0.45,
+              duration: 1,
+              yoyo: true,
+              // ease: "power1",
+              repeat: -1,
+            });
+
+            // this.controls.enabled = false;
+
+            // gsap.to(this.camera.position, {
+            //   x: -8.240661191766751,
+            //   // y: 11,
+            //   z: -10.7,
+            //   duration: 1.5,
+            //   ease: "power2.inOut",
+            // });
+
+            // gsap.to(this.camera.rotation, {
+            //   x: -Math.PI / 2,
+            //   y: 0,
+            //   z: 0,
+            //   duration: 1.5,
+            //   ease: "power2.inOut",
+            // });
+
+            // -8.240661191766751 24.994768461445943 -10.748515006545466
+
+            // gsap.to(this.controls.target, {
+            //   x: this.cameraTargetOne.position.x,
+            //   y: 11,
+            //   z: this.cameraTargetOne.position.z,
+            //   duration: 1,
+            //   onComplete: () => {
+            //     this.controls.enabled = true;
+            //   },
+            // });
           }
         });
+
         e.target.classList.add("active");
       }
 
       if (e.target.classList.contains("table_2")) {
-        this.allTables.forEach((e) => {
-          if (e.name === "table_2") {
-            e.visible = true;
+        this.hideOverlays();
+
+        this.allOverlays.forEach((e) => {
+          if (e.name === "click_apartment-2") {
+            gsap.to(e.material, {
+              opacity: 0.45,
+              duration: 1,
+              yoyo: true,
+              repeat: -1,
+            });
+
+            // console.log(this.cameraTargetTwo);
+            // this.controls.enabled = false;
+
+            // gsap.to(this.controls.target, {
+            //   x: this.cameraTargetTwo.position.x,
+            //   y: this.cameraTargetTwo.position.y,
+            //   z: this.cameraTargetTwo.position.z,
+            //   duration: 1,
+            // });
           }
         });
         e.target.classList.add("active");
       }
 
       if (e.target.classList.contains("table_3")) {
-        this.allTables.forEach((e) => {
-          if (e.name === "table_3") {
-            e.visible = true;
+        this.hideOverlays();
+
+        this.allOverlays.forEach((e) => {
+          if (e.name === "click_apartment-3") {
+            gsap.to(e.material, {
+              opacity: 0.45,
+              duration: 1,
+              yoyo: true,
+              repeat: -1,
+            });
+
+            gsap.to(this.controls.target, {
+              x: this.cameraTargetThree.position.x,
+              y: this.cameraTargetThree.position.y,
+              z: this.cameraTargetThree.position.z,
+              duration: 1,
+            });
           }
         });
         e.target.classList.add("active");
       }
 
       if (e.target.classList.contains("table_4")) {
-        this.allTables.forEach((e) => {
-          if (e.name === "table_4") {
-            e.visible = true;
+        this.hideOverlays();
+
+        this.allOverlays.forEach((e) => {
+          if (e.name === "click_apartment-4") {
+            gsap.to(e.material, {
+              opacity: 0.45,
+              duration: 1,
+              yoyo: true,
+              repeat: -1,
+            });
+
+            gsap.to(this.controls.target, {
+              x: this.cameraTargetFour.position.x,
+              y: this.cameraTargetFour.position.y,
+              z: this.cameraTargetFour.position.z,
+              duration: 1,
+            });
           }
         });
         e.target.classList.add("active");
       }
 
       if (e.target.classList.contains("table_5")) {
-        this.allTables.forEach((e) => {
-          if (e.name === "table_5") {
-            e.visible = true;
+        this.hideOverlays();
+
+        this.allOverlays.forEach((e) => {
+          if (e.name === "click_apartment-5") {
+            gsap.to(e.material, {
+              opacity: 0.45,
+              duration: 1,
+              yoyo: true,
+
+              repeat: -1,
+            });
+
+            gsap.to(this.controls.target, {
+              x: this.cameraTargetFive.position.x,
+              y: this.cameraTargetFive.position.y,
+              z: this.cameraTargetFive.position.z,
+              duration: 1,
+            });
           }
         });
         e.target.classList.add("active");
       }
+
+      if (e.target.classList.contains("table_6")) {
+        this.hideOverlays();
+
+        this.allOverlays.forEach((e) => {
+          if (e.name === "click_apartment-6") {
+            gsap.to(e.material, {
+              opacity: 0.45,
+              duration: 1,
+              yoyo: true,
+
+              repeat: -1,
+            });
+
+            gsap.to(this.controls.target, {
+              x: this.cameraTargetSix.position.x,
+              y: this.cameraTargetSix.position.y,
+              z: this.cameraTargetSix.position.z,
+              duration: 1,
+            });
+          }
+        });
+        e.target.classList.add("active");
+      }
+
+      if (e.target.classList.contains("table_7")) {
+        this.hideOverlays();
+
+        this.allOverlays.forEach((e) => {
+          if (e.name === "click_apartment-7") {
+            gsap.to(e.material, {
+              opacity: 0.45,
+              duration: 1,
+              yoyo: true,
+
+              repeat: -1,
+            });
+
+            gsap.to(this.controls.target, {
+              x: this.cameraTargetSeven.position.x,
+              y: this.cameraTargetSeven.position.y,
+              z: this.cameraTargetSeven.position.z,
+              duration: 1,
+            });
+          }
+        });
+        e.target.classList.add("active");
+      }
+    });
+
+    this.changeFloor.addEventListener("click", (e) => {
+      e.preventDefault();
+      // if (this.floorJoined.visible) {
+      //   this.floorJoined.visible = false;
+      //   this.floorPlan.visible = true;
+      // } else {
+      //   this.floorJoined.visible = true;
+      //   this.floorPlan.visible = false;
+      // }
     });
   }
 
   setUpScene() {
     this.resources.on("resourcesReady", () => {
       this.environmentTexture = this.resources.items.environmentTexture;
-
       this.environmentTexture.SRGBColorSpace = THREE.SRGBColorSpace;
-
       this.scene.environment = this.environmentTexture;
 
-      //? fog
-      // this.scene.fog = new THREE.Fog(0x000000, 10, 30);
-
       this.tableTest = this.resources.items.tableTest;
-
       this.tableTest.scene.traverse((e) => {
-        // if (e.name === "camera_target-2") {
-        //   console.log(e);
-        //   this.controls.target.set(e.position.x, e.position.y, e.position.z);
-        // }
-
         if (e.name === "camera_starts") {
           this.controls.target.set(e.position.x, e.position.y, e.position.z);
+        }
+        if (e.name.startsWith("camera_target-1")) {
+          this.cameraTargetOne = e;
+        }
+        if (e.name.startsWith("camera_target-2")) {
+          this.cameraTargetTwo = e;
+        }
+        if (e.name.startsWith("camera_target-3")) {
+          this.cameraTargetThree = e;
+        }
+        if (e.name.startsWith("camera_target-4")) {
+          this.cameraTargetFour = e;
+        }
+        if (e.name.startsWith("camera_target-5")) {
+          this.cameraTargetFive = e;
+        }
+        if (e.name.startsWith("camera_target-6")) {
+          this.cameraTargetSix = e;
+        }
+        if (e.name.startsWith("camera_target-7")) {
+          this.cameraTargetSeven = e;
         }
 
         if (e.type === "Mesh") {
           // e.castShadow = true;
           // e.receiveShadow = true;
-        }
 
-        if (e.name.startsWith("Mesh")) {
-          e.material = new THREE.MeshStandardMaterial({
-            color: 0xfdfdfd,
-            metalness: 0,
-            roughness: 1,
-          });
+          if (e.name.startsWith("floormap")) {
+            this.floorPlan = e;
+          }
         }
 
         if (e.name.startsWith("click_apartment-1")) {
@@ -173,8 +336,8 @@ export default class World {
             transparent: true,
             opacity: 0,
           });
-          this.apartmentOne = e;
-          this.intersectObjects.push(e);
+
+          this.allOverlays.push(e);
         }
 
         if (e.name.startsWith("click_apartment-2")) {
@@ -183,8 +346,55 @@ export default class World {
             transparent: true,
             opacity: 0,
           });
-          this.apartmentTwo = e;
-          this.intersectObjects.push(e);
+
+          this.allOverlays.push(e);
+        }
+
+        if (e.name.startsWith("click_apartment-3")) {
+          e.material = new THREE.MeshBasicMaterial({
+            color: 0x0000ff,
+            transparent: true,
+            opacity: 0,
+          });
+
+          this.allOverlays.push(e);
+        }
+
+        if (e.name.startsWith("click_apartment-4")) {
+          e.material = new THREE.MeshBasicMaterial({
+            color: 0xfeee91,
+            transparent: true,
+            opacity: 0,
+          });
+
+          this.allOverlays.push(e);
+        }
+
+        if (e.name.startsWith("click_apartment-5")) {
+          e.material = new THREE.MeshBasicMaterial({
+            color: 0xe2852e,
+            transparent: true,
+            opacity: 0,
+          });
+
+          this.allOverlays.push(e);
+        }
+        if (e.name.startsWith("click_apartment-6")) {
+          e.material = new THREE.MeshBasicMaterial({
+            color: 0x62109f,
+            transparent: true,
+            opacity: 0,
+          });
+          this.allOverlays.push(e);
+        }
+
+        if (e.name.startsWith("click_apartment-7")) {
+          e.material = new THREE.MeshBasicMaterial({
+            color: 0xff33a8,
+            transparent: true,
+            opacity: 0,
+          });
+          this.allOverlays.push(e);
         }
 
         if (e.name.startsWith("window")) {
@@ -197,51 +407,14 @@ export default class World {
             side: THREE.DoubleSide,
           });
         }
-
-        if (e.name.startsWith("table")) {
-          this.allTables.push(e);
-        }
       });
-
-      // this.allTables.forEach((e) => {
-      //   e.visible = false;
-      // });
-
-      // this.allTables.forEach((e) => {
-      //   if (e.name === "table_2") {
-      //     e.visible = true;
-      //   }
-      // });
-
-      // this.cube = new THREE.Mesh(
-      //   new THREE.BoxGeometry(0.5, 0.5, 0.5),
-      //   new THREE.MeshStandardMaterial({ metalness: 1, roughness: 0.2 })
-      // );
-      // this.cube.rotation.y = Math.PI * 1.25;
-      // this.scene.add(this.cube);
 
       this.scene.add(this.tableTest.scene);
 
-      // //? object inside cube
-      // this.setUpLights();
       this.debugActive();
-
-      //? camera animation
-
-      // gsap.to(this.camera.position, {
-      //   x: -0.0574511857685335,
-      //   y: 1.5960710560001234,
-      //   z: 2.5519760440282733,
-      //   duration: 3,
-      //   delay: 0.5,
-      //   ease: "back.out(.5)",
-      //   onComplete: () => {
-      //     // this.controls.autoRotate = true;
-      //     // this.controls.autoRotateSpeed = 3;
-      //   },
-      // });
     });
   }
+
   setUpLights() {
     //? lighting
     this.ambientLight = new THREE.AmbientLight(0xf5f5f5, 3);
@@ -332,6 +505,18 @@ export default class World {
     }
   }
 
+  hideOverlays() {
+    // this.allOverlays.forEach((e) => {
+    //   e.material.opacity = 0;
+    // });
+
+    this.allOverlays.forEach((e) => {
+      gsap.killTweensOf(e.material);
+      e.material.opacity = 0;
+      e.material.opacity = 0;
+    });
+  }
+
   update() {
     if (this.debugSettings.objectActive) {
     }
@@ -346,46 +531,46 @@ export default class World {
         document.body.style.cursor = "pointer";
         this.currentIntersect = this.intersects[0];
 
-        if (this.currentIntersect.object.name.startsWith("click_apartment-2")) {
-          gsap.to(this.currentIntersect.object.material, {
-            opacity: 0.3,
-            duration: 0.15,
-            ease: "ease-out",
-          });
-          if (this.clicked) {
-            // gsap.to(this.camera.position, {
-            //   x: -7.223,
-            //   y: 15.7914,
-            //   z: -3.95,
-            //   duration: 1.25,
-            //   // ease: "power1.in",
-            // });
+        // if (this.currentIntersect.object.name.startsWith("click_apartment-2")) {
+        //   gsap.to(this.currentIntersect.object.material, {
+        //     opacity: 0.3,
+        //     duration: 0.15,
+        //     ease: "ease-out",
+        //   });
+        //   if (this.clicked) {
+        //     // gsap.to(this.camera.position, {
+        //     //   x: -7.223,
+        //     //   y: 15.7914,
+        //     //   z: -3.95,
+        //     //   duration: 1.25,
+        //     //   // ease: "power1.in",
+        //     // });
 
-            // gsap.to(this.camera.rotation, {
-            //   x: -1.57,
-            //   y: -1.706,
-            //   z: -0.01,
-            //   duration: 1.25,
-            //   //  ease: "power1.in",
-            // });
-            gsap.to(this.controls.target, {
-              x: -7.24,
-              y: 0.9,
-              z: -3.96,
-              duration: 2.5,
-              // ease: "power1.in",
-            });
-            // this.controls.target.set(-7.24894, 0.7, -3.968);
-          }
-        }
+        //     // gsap.to(this.camera.rotation, {
+        //     //   x: -1.57,
+        //     //   y: -1.706,
+        //     //   z: -0.01,
+        //     //   duration: 1.25,
+        //     //   //  ease: "power1.in",
+        //     // });
+        //     gsap.to(this.controls.target, {
+        //       x: -7.24,
+        //       y: 0.9,
+        //       z: -3.96,
+        //       duration: 2.5,
+        //       // ease: "power1.in",
+        //     });
+        //     // this.controls.target.set(-7.24894, 0.7, -3.968);
+        //   }
+        // }
 
-        if (this.currentIntersect.object.name.startsWith("click_apartment-1")) {
-          gsap.to(this.currentIntersect.object.material, {
-            opacity: 0.3,
-            duration: 0.15,
-            ease: "ease-out",
-          });
-        }
+        // if (this.currentIntersect.object.name.startsWith("click_apartment-1")) {
+        //   gsap.to(this.currentIntersect.object.material, {
+        //     opacity: 0.3,
+        //     duration: 0.15,
+        //     ease: "ease-out",
+        //   });
+        // }
 
         //? drawer
       } else if (!this.intersects.length) {
@@ -393,20 +578,20 @@ export default class World {
 
         document.body.style.cursor = "auto";
 
-        if (this.apartmentOne) {
-          gsap.to(this.apartmentOne.material, {
-            opacity: 0,
-            duration: 0.15,
-            ease: "power1.out",
-          });
-        }
-        if (this.apartmentTwo) {
-          gsap.to(this.apartmentTwo.material, {
-            opacity: 0,
-            duration: 0.15,
-            ease: "power1.out",
-          });
-        }
+        // if (this.apartmentOne) {
+        //   gsap.to(this.apartmentOne.material, {
+        //     opacity: 0,
+        //     duration: 0.15,
+        //     ease: "power1.out",
+        //   });
+        // }
+        // if (this.apartmentTwo) {
+        //   gsap.to(this.apartmentTwo.material, {
+        //     opacity: 0,
+        //     duration: 0.15,
+        //     ease: "power1.out",
+        //   });
+        // }
       }
     }
 
